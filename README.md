@@ -120,29 +120,6 @@ This reproduction achieved average test set AUC 0.836 across 14 findings compare
 To explore the full dataset, [download images from NIH (large, ~40gb compressed)](https://nihcc.app.box.com/v/ChestXray-NIHCC),
 extract all `tar.gz` files to a single folder, and provide path as needed in code.
 
-## Train your own model!
-Please note: a GPU is required to train the model. You will encounter errors if you do not have a GPU available and CUDA installed and you attempt to retrain. With a GPU, you can retrain the model with `retrain.py`. Make sure you download the full NIH dataset before trying this. If you run out of GPU memory, reduce `BATCH_SIZE` from its default setting of 16.
-
-If you do not have a GPU, but wish to retrain the model yourself to verify performance, you can replicate the model using Amazon EC2's p2.xlarge instance ($0.90/hr at time of writing) with an AMI that has CUDA installed (e.g. Deep Learning AMI (Ubuntu) Version 8.0 - ami-dff741a0). After [creating and ssh-ing into the EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html), follow the instructions in Getting Started above to configure your environment. If you have no experience with Amazon EC2, [fast.ai's tutorial is a good place to start](http://course.fast.ai/lessons/aws.html)
-
-## Note on training
-I use SGD+momentum rather than the Adam optimizer as described in the original [paper](https://arxiv.org/pdf/1711.05225.pdf). I achieved better results with SGD+momentum, as has been reported in [other work](https://arxiv.org/pdf/1705.08292.pdf).
-
 ## Note on data
 A sample of 621 test NIH chest x-rays enriched for positive pathology is included with the repo to faciliate immediate use and exploration in the `Explore Predictions.ipynb` notebook. The [full NIH dataset](https://nihcc.app.box.com/v/ChestXray-NIHCC) is required for model retraining.
 
-## Use and citation
-My goal in releasing this code is to increase transparency and replicability of deep learning models in radiology. I encourage you to use this code to start your own projects. If you do, please cite the repo:
-
-```@misc{Zech2018,
-  author = {Zech, J.},
-  title = {Thorax},
-  year = {2018},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/franciscorazy/Thorax}}
-}
-```
-
-## Acknowledgements
-With deep gratitude to researchers and developers at PyTorch, NIH, Stanford, and Project Jupyter, on whose generous work this project relies. With special thanks to Sasank Chilamkurthy, whose demonstration code was incorporated into this project. PyTorch is an incredible contribution to the research community.
